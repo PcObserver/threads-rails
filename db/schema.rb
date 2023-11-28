@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_210741) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_28_233625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_210741) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
+  end
+
+  create_table "user_knowledge_domain_votes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "voter_id", null: false
+    t.uuid "user_knowledge_domain_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_knowledge_domain_id"], name: "index_user_knowledge_domain_votes_on_user_knowledge_domain_id"
+    t.index ["voter_id"], name: "index_user_knowledge_domain_votes_on_voter_id"
   end
 
   create_table "user_knowledge_domains", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -76,6 +85,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_210741) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "posts", "users", column: "author_id"
+  add_foreign_key "user_knowledge_domain_votes", "user_knowledge_domains"
+  add_foreign_key "user_knowledge_domain_votes", "users", column: "voter_id"
   add_foreign_key "user_knowledge_domains", "knowledge_domains"
   add_foreign_key "user_knowledge_domains", "users"
 end

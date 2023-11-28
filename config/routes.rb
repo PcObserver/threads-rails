@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'user_knowledge_domains/update'
   devise_for :users
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :posts
-  resources :users, only: %i[show edit update]
+  resources :users, only: %i[show]
   resources :user_knowledge_domains do
     member do
       patch 'increase_stars'
