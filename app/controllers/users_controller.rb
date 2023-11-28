@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_comment, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update]
 
   def show
+    @user_knowledge_domains = @user.user_knowledge_domains.includes(:knowledge_domain)
   end
 
   def edit

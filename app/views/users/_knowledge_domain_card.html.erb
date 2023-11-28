@@ -1,0 +1,7 @@
+<div>
+  <p><%= user_knowledge_domain.knowledge_domain.name %></p>
+  <p><%= user_knowledge_domain.stars %></p>
+  <% if current_user != profile_user %>
+    <%= link_to 'Up', increase_stars_user_knowledge_domain_path(user_knowledge_domain), method: :patch, remote: true %>
+  <% end %>
+</div>
