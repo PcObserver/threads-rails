@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'posts#index'
 
-  resources :comments
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
+
   resources :users, only: %i[show]
   resources :user_knowledge_domains do
     member do

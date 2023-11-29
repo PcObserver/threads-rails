@@ -11,7 +11,12 @@
 
   <p>
     <strong>Author:</strong>
-    <%= post.author.email %>
-  </p>
+    <%= post.author.name %>
 
+    <div class="domain-tags-container">
+      <% post.author.knowledge_domains.order(stars: :desc).limit(3).each do |domain| %>
+        <div><%= domain.name %></div>
+      <% end %>
+    </div>
+  </p>
 </div>
