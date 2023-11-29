@@ -1,11 +1,44 @@
-<h1>Profile</h1>
+<!-- show.html.erb -->
 
-<%= link_to 'Home', root_path %>
+<style>
+  body {
+    background-color: #343a40;
+    color: #fff;
+  }
 
-<p><%= @user.name %></p>
+  .container {
+    margin-top: 20px;
+  }
 
-<div>
-  <% @user_knowledge_domains.each do |user_knowledge_domain| %>
-    <%= render partial: 'knowledge_domain_card', locals: { user_knowledge_domain: user_knowledge_domain, is_profile_owner: @is_profile_owner } %>
-  <% end %>
+  .home-link {
+    color: #fff;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .knowledge-domain-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+</style>
+
+<div class="container">
+  <h1 class="mb-4">Profile</h1>
+
+  <%= link_to 'Home', root_path, class: 'home-link' %>
+
+  <p class="profile-name"><%= @user.name %></p>
+
+  <div class="knowledge-domain-grid">
+    <% @user_knowledge_domains.each do |user_knowledge_domain| %>
+      <%= render partial: 'knowledge_domain_card', locals: { user_knowledge_domain: user_knowledge_domain, is_profile_owner: @is_profile_owner } %>
+    <% end %>
+  </div>
 </div>

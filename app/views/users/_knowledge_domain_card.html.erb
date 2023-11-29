@@ -1,7 +1,9 @@
-<div id="domain-<%=user_knowledge_domain.id%>">
-  <p><%= user_knowledge_domain.knowledge_domain.name %></p>
-  <p><%= user_knowledge_domain.stars %></p>
+<div id="domain-<%= user_knowledge_domain.id %>" style="background-color: #495057; padding: 15px; border-radius: 5px; width: calc(33.333% - 20px); box-sizing: border-box;">
+
+  <p style="color: #fff; font-size: 18px; font-weight: bold; margin: 0; margin-bottom: 10px;"><%= user_knowledge_domain.knowledge_domain.name %></p>
+  <p style="color: #28a745; font-size: 16px; margin: 0; margin-bottom: 10px;">Stars: <%= user_knowledge_domain.stars %></p>
+
   <% if !is_profile_owner && !user_knowledge_domain.voters.include?(current_user) %>
-    <%= button_to 'Up', increase_stars_user_knowledge_domain_path(user_knowledge_domain.id, is_profile_owner: is_profile_owner), method: :patch %>
+    <%= button_to 'Up', increase_stars_user_knowledge_domain_path(user_knowledge_domain.id, is_profile_owner: is_profile_owner), method: :patch, style: "color: #fff; background-color: #007bff; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;" %>
   <% end %>
 </div>
