@@ -6,6 +6,6 @@
 
 <div>
   <% @user_knowledge_domains.each do |user_knowledge_domain| %>
-    <%= render partial: 'knowledge_domain_card', locals: { user_knowledge_domain: user_knowledge_domain, profile_user: @user } %>
+    <%= render partial: 'knowledge_domain_card', locals: { user_knowledge_domain: user_knowledge_domain, is_profile_owner: @is_profile_owner } %>
   <% end %>
 </div>

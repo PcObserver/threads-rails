@@ -1,7 +1,7 @@
 <div id="domain-<%=user_knowledge_domain.id%>">
   <p><%= user_knowledge_domain.knowledge_domain.name %></p>
   <p><%= user_knowledge_domain.stars %></p>
-  <% if current_user != profile_user %>
-    <%= button_to 'Up', increase_stars_user_knowledge_domain_path(user_knowledge_domain.id, profile_user: profile_user), method: :patch %>
+  <% if !is_profile_owner && !user_knowledge_domain.voters.include?(current_user) %>
+    <%= button_to 'Up', increase_stars_user_knowledge_domain_path(user_knowledge_domain.id, is_profile_owner: is_profile_owner), method: :patch %>
   <% end %>
 </div>
