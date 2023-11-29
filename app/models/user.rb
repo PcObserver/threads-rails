@@ -6,7 +6,15 @@ class User < ApplicationRecord
          :trackable, :timeoutable, :confirmable
 
   has_many :user_knowledge_domains, dependent: :destroy
+  has_many :knowledge_domains, through: :user_knowledge_domains
+
   has_many :user_knowledge_domain_votes
 
   validates :name, presence: true
+
+  before_create :associate_domains
+
+  def associate_domains
+    knowledge_domains << KnowledgeDomain.all
+  end
 end
