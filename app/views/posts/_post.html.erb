@@ -1,17 +1,28 @@
 <div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
-
+  <div class="d-flex justify-content-between mb-2">
+    <span><strong>Titulo:</strong><%= post.title %></span>
+    <span>📚 <%= post.knowledge_domain.name %></span>
+  </div>
   <p>
     <strong>Body:</strong>
     <%= post.body %>
   </p>
-
-  <p>
-    <strong>Author:</strong>
-    <%= post.author.email %>
+  <p class="d-flex gap-2 align-items-center">
+    <strong>Autor: <%= link_to post.author.name, user_path(post.author), class: 'author-name' %></strong>
+    <span class="domain-tags-container d-flex">
+      <% post.author.knowledge_domains.order(stars: :desc).limit(3).each_with_index do |domain, index| %>
+        <%= case index
+          when 0
+            "🥇 #{domain.name}"
+          when 1
+            "🥈 #{domain.name}"
+          when 2
+            "🥉 #{domain.name}"
+          else
+            domain.name
+          end
+        %>
+      <% end %>
+    </span>
   </p>
-
 </div>

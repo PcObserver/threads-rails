@@ -1,7 +1,8 @@
-<div id="domain-<%=user_knowledge_domain.id%>">
-  <p><%= user_knowledge_domain.knowledge_domain.name %></p>
-  <p><%= user_knowledge_domain.stars %></p>
+<div class="knowledge-domain-card" id="domain-<%= user_knowledge_domain.id %>">
+  <p class="knowledge-domain-title"><%= user_knowledge_domain.knowledge_domain.name %></p>
+  <p class="knowledge-domain-stars">Stars: <%= user_knowledge_domain.stars %></p>
+
   <% if !is_profile_owner && !user_knowledge_domain.voters.include?(current_user) %>
-    <%= button_to 'Up', increase_stars_user_knowledge_domain_path(user_knowledge_domain.id, is_profile_owner: is_profile_owner), method: :patch %>
+    <%= button_to 'Up', increase_stars_user_knowledge_domain_path(user_knowledge_domain.id, is_profile_owner: is_profile_owner), method: :patch, class: 'upvote-button' %>
   <% end %>
 </div>

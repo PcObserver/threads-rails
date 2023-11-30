@@ -1,0 +1,26 @@
+<div class="home">
+  <div class="d-flex justify-content-between align-items-center bg-dark p-3 rounded header">
+    <h1 class="mb-0">Editar Domínios</h1>
+    <div class="header-links">
+      <%= link_to 'Home', root_path, class: 'text-white me-3 home-link' %>
+      <%= link_to 'Sair', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-white logout-link' %>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <%= form_with(model: @user, url: user_path(@user), method: :patch, class: 'mb-4') do |form| %>
+      <div class="form-check">
+        <% @knowledge_domains.each do |knowledge_domain| %>
+          <input class="form-check-input" type="checkbox" name="user[knowledge_domain_ids][]" id="user_knowledge_domain_<%= knowledge_domain.id %>" value="<%= knowledge_domain.id %>" <%= 'checked' if @user.knowledge_domains.include?(knowledge_domain) %>>
+          <label class="form-check-label" for="user_knowledge_domain_<%= knowledge_domain.id %>">
+            <%= knowledge_domain.name %>
+          </label><br>
+        <% end %>
+      </div>
+
+      <%= form.submit 'Update', class: 'btn btn-primary' %>
+    <% end %>
+
+    <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary mt-3' %>
+  </div>
+</div>

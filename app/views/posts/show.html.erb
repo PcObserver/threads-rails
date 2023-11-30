@@ -1,10 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<div class="home">
+  <div class="header bg-dark p-3 rounded">
+    <div class="header-links">
+      <%= link_to 'Home', root_path, class: 'home-link' %>
+      <h1><%= @post.title %></h1>
+      <%= link_to 'Sair', destroy_user_session_path, data: { turbo_method: :delete }, class: 'logout-link' %>
+    </div>
+  </div>
 
-<%= render @post %>
+  <div class="container">
+    <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+    <div class="post-container">
+      <%= render @post, partial: 'post' %>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+      <% if @post.author == current_user %>
+        <div class="d-flex gap-4 align-items-center justify-content-end">
+          <%= link_to "Editar este post", edit_post_path(@post), class: 'btn btn-warning me-2' %>
+          <%= button_to "Excluir este post", @post, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="comments d-flex flex-column justify-content-center">
+      <%= render 'comments/form', post: @post %>
+      <% @comments.each do |comment| %>
+        <%= render 'comments/comment', post: @post, comment: comment %>
+      <% end %>
+    </div>
+  </div>
 </div>
