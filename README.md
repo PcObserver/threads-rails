@@ -1,24 +1,10 @@
-# README
+# Projeto final da disciplina de Gestão do Conhecimento
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Sobre o projeto
 
-Things you may want to cover:
+Fórum de perguntas e respostas onde membros podem criar e responder posts. Cada usuário pode delcarar no seu perfil muitos domínios de conhecimento, aos quais podem ser validados por meio de votação de visitantes no seu perfil. Ao lado do nome de cada usuário em um comentário ou em um post, são apresentadas as três áreas de dominio de conhecimento com o maior votos de outros usuários.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Integrantes:
+- Eduardo Donadon Ramos da Silva
+- Lucas Gomes Bastos
+- Lucas Moreno Dantas Santos
