@@ -1,32 +1,10 @@
-<%= form_with(model: comment) do |form| %>
-  <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<%= form_with(model: [post, post.comments.build]) do |form| %>
+  <%= form.hidden_field :author_id, value: current_user.id %>
 
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+  <div class="form-floating mb-3">
+    <%= form.text_area :description, id: 'floatingTextarea', class: 'form-control', style: 'height: 100px' %>
+    <%= form.label :description, 'Comentario', class: 'form-label' %>
   </div>
 
-  <div>
-    <%= form.label :post_id, style: "display: block" %>
-    <%= form.text_field :post_id %>
-  </div>
-
-  <div>
-    <%= form.label :author_id, style: "display: block" %>
-    <%= form.text_field :author_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit "Enviar", class: "btn btn-primary mt-1" %>
 <% end %>

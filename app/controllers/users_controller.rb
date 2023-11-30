@@ -7,14 +7,21 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @knowledge_domains = KnowledgeDomain.order(:name)
   end
 
   def update
+    @user.update(user_params)
+
+    redirect_to user_path(@user), notice: 'Dominios de conhecimento atualizados com sucesso!'
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def user_params
+    params.require(:user).permit(knowledge_domain_ids: [])
+  end
+
   def set_user
     @user = User.find(params[:id])
   end
