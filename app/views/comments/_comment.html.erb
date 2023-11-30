@@ -1,6 +1,6 @@
-<div class="comment-<%= comment.id %> container" style="border: 1px solid black; padding: 1em; margin: 1em;">
-  <p class="d-flex justify-content-between align-items-center">
-    <strong><%= link_to comment.author.name, user_path(post.author) %></strong>
+<div class="comment-<%= comment.id %> container comment">
+  <p class="d-flex gap-2 align-items-center">
+    <strong><%= link_to comment.author.name, user_path(post.author), class: 'author-name' %></strong>
     <span class="domain-tags-container d-flex">
       <% comment.author.knowledge_domains.order(stars: :desc).limit(3).each_with_index do |domain, index| %>
         <%= case index
@@ -11,18 +11,20 @@
           when 2
             "🥉 #{domain.name}"
           else
-            domain.name
+          domain.name
           end
         %>
       <% end %>
     </span>
   </p>
-  <span>Posted <%= time_ago_in_words(comment.created_at) %> ago</span>
-  <% if current_user == comment.author %>
-    <div class="button-group float-end">
-      <%= button_to "Delete", [post, comment], class:"btn btn-danger", method: :delete %>
-    </div>
-  <% end %>
+  <div class="d-flex justify-content-between align-items-center">
+    <span>Posted <%= time_ago_in_words(comment.created_at) %> ago</span>
+    <% if current_user == comment.author %>
+      <div class="button-group float-end">
+        <%= button_to "Delete", [post, comment], class:"btn btn-danger", method: :delete %>
+      </div>
+    <% end %>
+  </div>
   <hr/>
   <%= comment.description %>
 </div>

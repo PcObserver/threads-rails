@@ -14,16 +14,21 @@
   <% end %>
 
   <div style="margin-bottom: 20px;">
-    <%= form.label :title, style: "display: block; color: #fff;" %>
+    <%= form.label :title, 'Titulo', style: "display: block; color: #fff;" %>
     <%= form.text_field :title, style: "width: 100%; padding: 0.375rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" %>
   </div>
 
   <div style="margin-bottom: 20px;">
     <%= form.label :body, style: "display: block; color: #fff;" %>
-    <%= form.text_area :body, style: "width: 100%; padding: 0.375rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" %>
+    <%= form.text_area :body, style: "width: 100%; padding: 0.375rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; min-height: 200px" %>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <%= form.label :knowledge_domain_id, "Dominio" %>
+    <%= form.select :knowledge_domain_id, KnowledgeDomain.all.map { |kd| [kd.name, kd.id] }, { include_blank: true }, class: 'form-control form-select ' %>
   </div>
 
   <div>
-    <%= form.submit 'Create Post', style: "color: #fff; background-color: #007bff; border-color: #007bff; padding: 0.375rem 0.75rem; font-size: 1rem; line-height: 1.5; border-radius: 0.25rem; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;" %>
+    <%= form.submit 'Confirmar', style: "color: #fff; background-color: #007bff; border-color: #007bff; padding: 0.375rem 0.75rem; font-size: 1rem; line-height: 1.5; border-radius: 0.25rem; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;" %>
   </div>
 <% end %>

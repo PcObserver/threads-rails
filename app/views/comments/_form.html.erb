@@ -1,8 +1,10 @@
 <%= form_with(model: [post, post.comments.build]) do |form| %>
   <%= form.hidden_field :author_id, value: current_user.id %>
 
-  <div class="form-control">
-    <%= form.text_area :description %>
-    <%= form.submit "Comentar", class: "btn btn-primary mt-1" %>
+  <div class="form-floating mb-3">
+    <%= form.text_area :description, id: 'floatingTextarea', class: 'form-control', style: 'height: 100px' %>
+    <%= form.label :description, 'Comentario', class: 'form-label' %>
   </div>
+
+  <%= form.submit "Enviar", class: "btn btn-primary mt-1" %>
 <% end %>

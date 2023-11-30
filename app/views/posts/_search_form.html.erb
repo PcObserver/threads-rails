@@ -1,0 +1,38 @@
+<style>
+  .filter-row {
+    display: flex;
+  }
+  .filter-item {
+    margin-right: 10px;
+  }
+  .filter-item-large {
+    flex-grow: 2;
+  }
+  .filter-item-small {
+    flex-grow: 1;
+  }
+</style>
+
+<div class="filters-container mt-4">
+  <%= search_form_for @q, url: posts_path, html: { method: :get } do |f| %>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <%= f.search_field :title_cont, class: 'form-control', placeholder: 'Pesquisar por título' %>
+          <%= f.label :title_cont, 'Pesquisar por título', class: 'form-label' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating mb-3">
+          <%= f.collection_select :knowledge_domain_id_eq, KnowledgeDomain.all, :id, :name, { include_blank: 'Selecione um dominio' }, class: 'form-select' %>
+          <%= f.label :knowledge_domain_id_eq, 'Dominio', class: 'form-label' %>
+        </div>
+      </div>
+      <div class="col-md-2 h-100">
+        <button type="submit" class="btn btn-secondary h-100 mb-3">Filtrar</button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
