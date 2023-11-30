@@ -11,10 +11,4 @@ class User < ApplicationRecord
   has_many :user_knowledge_domain_votes
 
   validates :name, presence: true
-
-  before_create :associate_domains
-
-  def associate_domains
-    knowledge_domains << KnowledgeDomain.all
-  end
 end
